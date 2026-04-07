@@ -3,7 +3,7 @@
  * Lumination AI Quiz Generator
  *
  * AI-powered quiz generation from documents, URLs, or text.
- * Requires Lumination Core (v1.0.0+) for API access and analytics.
+ * Requires Lumination Core (v1.0.1+) for API access and analytics.
  *
  * @package           LuminationQuizGenerator
  * @author            Lumination Team
@@ -14,7 +14,7 @@
  * @wordpress-plugin
  * Plugin Name:       Lumination AI Quiz Generator
  * Description:       Generate interactive quizzes from PDFs, URLs, or pasted text. Configurable question count and difficulty, instant scoring, and export to CSV. Requires Lumination Core.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            Lumination Team
@@ -31,7 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // ── Constants ────────────────────────────────────────────────────────────────
 
-define( 'LUMINATION_QG_VERSION', '1.0.0' );
+define( 'LUMINATION_QG_VERSION', '1.0.1' );
 define( 'LUMINATION_QG_FILE',    __FILE__ );
 define( 'LUMINATION_QG_DIR',     plugin_dir_path( __FILE__ ) );
 define( 'LUMINATION_QG_URL',     plugin_dir_url( __FILE__ ) );
@@ -55,7 +55,7 @@ add_action(
 	function () {
 		$core_ok = function_exists( 'lumination_core' )
 				&& defined( 'LUMINATION_CORE_VERSION' )
-				&& version_compare( LUMINATION_CORE_VERSION, '1.0.0', '>=' );
+				&& version_compare( LUMINATION_CORE_VERSION, '1.0.1', '>=' );
 
 		if ( ! $core_ok ) {
 			add_action(
@@ -67,7 +67,7 @@ add_action(
 					$msg = sprintf(
 						wp_kses(
 							/* translators: %s: URL to Plugins admin page */
-							__( '<strong>Lumination AI Quiz Generator</strong> requires <strong>Lumination Core</strong> (v1.0.0+) to be installed and active. <a href="%s">Manage plugins &rarr;</a>', 'lumination-quiz-generator' ),
+							__( '<strong>Lumination AI Quiz Generator</strong> requires <strong>Lumination Core</strong> (v1.0.1+) to be installed and active. <a href="%s">Manage plugins &rarr;</a>', 'lumination-quiz-generator' ),
 							array(
 								'strong' => array(),
 								'a'      => array( 'href' => array() ),
