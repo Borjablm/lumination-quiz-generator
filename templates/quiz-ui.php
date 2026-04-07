@@ -35,7 +35,7 @@ $lumination_qg_show_file = $lumination_qg_is_auto || 'file' === $lqg_mode;
 		<!-- Header -->
 		<div class="lqg-header">
 			<?php if ( ! empty( $lqg_title ) ) : ?>
-				<h3 class="lqg-title"><?php echo esc_html( $lqg_title ); ?></h3>
+				<<?php echo esc_attr( $lqg_heading_tag ); ?> class="lqg-title"><?php echo esc_html( $lqg_title ); ?></<?php echo esc_attr( $lqg_heading_tag ); ?>>
 			<?php endif; ?>
 			<?php if ( ! empty( $lqg_description ) ) : ?>
 				<p class="lqg-description"><?php echo esc_html( $lqg_description ); ?></p>
@@ -181,7 +181,7 @@ $lumination_qg_show_file = $lumination_qg_is_auto || 'file' === $lqg_mode;
 		<!-- Question area -->
 		<div class="lqg-question-area">
 			<p class="lqg-category-label"></p>
-			<h4 class="lqg-question-text"></h4>
+			<div class="lqg-question-text"></div>
 			<div class="lqg-options-list"></div>
 			<div class="lqg-hint lqg-hidden">
 				<button class="lqg-hint-btn"><?php esc_html_e( 'Show Hint', 'lumination-quiz-generator' ); ?></button>
@@ -201,7 +201,7 @@ $lumination_qg_show_file = $lumination_qg_is_auto || 'file' === $lqg_mode;
 	<!-- ── Results Phase ── -->
 	<div class="lqg-results lqg-hidden">
 		<div class="lqg-results-header">
-			<h3 class="lqg-results-title"><?php esc_html_e( 'Quiz Complete!', 'lumination-quiz-generator' ); ?></h3>
+			<div class="lqg-results-title"><?php esc_html_e( 'Quiz Complete!', 'lumination-quiz-generator' ); ?></div>
 			<div class="lqg-score-display">
 				<span class="lqg-score-value"></span>
 				<span class="lqg-score-label"></span>

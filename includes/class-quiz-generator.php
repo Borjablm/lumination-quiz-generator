@@ -27,6 +27,7 @@ class Lumination_Quiz_Generator {
 		'description' => 'Upload a document, paste a URL, or enter text to generate an interactive quiz',
 		'mode'        => 'auto',
 		'button_text' => 'Generate Quiz',
+		'heading'     => '',
 	);
 
 	/**
@@ -62,6 +63,7 @@ class Lumination_Quiz_Generator {
 		$lqg_title       = sanitize_text_field( $atts['title'] );
 		$lqg_description = sanitize_text_field( $atts['description'] );
 		$lqg_button_text = sanitize_text_field( $atts['button_text'] );
+		$lqg_heading_tag = Lumination_Core_Settings::get_heading_tag( sanitize_text_field( $atts['heading'] ) );
 
 		// Admin defaults.
 		$lqg_default_count      = (int) get_option( 'lumination_qg_default_count', 10 );
