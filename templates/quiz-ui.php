@@ -6,6 +6,10 @@
  *   $lqg_mode, $lqg_title, $lqg_description, $lqg_button_text,
  *   $lqg_default_count, $lqg_default_difficulty
  *
+ * Locally derived (prefixed per WP standards):
+ *   $lumination_qg_is_auto, $lumination_qg_show_url,
+ *   $lumination_qg_show_text, $lumination_qg_show_file
+ *
  * @package LuminationQuizGenerator
  * @since   1.0.0
  */
@@ -15,10 +19,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$lqg_is_auto  = ( 'auto' === $lqg_mode );
-$lqg_show_url  = $lqg_is_auto || 'url' === $lqg_mode;
-$lqg_show_text = $lqg_is_auto || 'text' === $lqg_mode;
-$lqg_show_file = $lqg_is_auto || 'file' === $lqg_mode;
+$lumination_qg_is_auto  = ( 'auto' === $lqg_mode );
+$lumination_qg_show_url  = $lumination_qg_is_auto || 'url' === $lqg_mode;
+$lumination_qg_show_text = $lumination_qg_is_auto || 'text' === $lqg_mode;
+$lumination_qg_show_file = $lumination_qg_is_auto || 'file' === $lqg_mode;
 ?>
 <div class="lqg-quiz"
      data-mode="<?php echo esc_attr( $lqg_mode ); ?>"
@@ -41,7 +45,7 @@ $lqg_show_file = $lqg_is_auto || 'file' === $lqg_mode;
 		<!-- Input section -->
 		<div class="lqg-input-section">
 
-			<?php if ( $lqg_is_auto ) : ?>
+			<?php if ( $lumination_qg_is_auto ) : ?>
 			<!-- Mode tabs -->
 			<div class="lqg-tabs" role="tablist">
 				<button class="lqg-tab lqg-tab--active" data-tab="url" role="tab" aria-selected="true">
@@ -56,7 +60,7 @@ $lqg_show_file = $lqg_is_auto || 'file' === $lqg_mode;
 			</div>
 			<?php endif; ?>
 
-			<?php if ( $lqg_show_url ) : ?>
+			<?php if ( $lumination_qg_show_url ) : ?>
 			<div class="lqg-tab-panel lqg-tab-panel--url" data-panel="url" role="tabpanel">
 				<input type="url"
 				       class="lqg-url-input"
@@ -65,8 +69,8 @@ $lqg_show_file = $lqg_is_auto || 'file' === $lqg_mode;
 			</div>
 			<?php endif; ?>
 
-			<?php if ( $lqg_show_text ) : ?>
-			<div class="lqg-tab-panel lqg-tab-panel--text<?php echo ( $lqg_is_auto || 'text' !== $lqg_mode ) ? ' lqg-hidden' : ''; ?>"
+			<?php if ( $lumination_qg_show_text ) : ?>
+			<div class="lqg-tab-panel lqg-tab-panel--text<?php echo ( $lumination_qg_is_auto || 'text' !== $lqg_mode ) ? ' lqg-hidden' : ''; ?>"
 			     data-panel="text" role="tabpanel">
 				<textarea class="lqg-text-input"
 				          placeholder="<?php esc_attr_e( 'Paste your study material here...', 'lumination-quiz-generator' ); ?>"
@@ -75,8 +79,8 @@ $lqg_show_file = $lqg_is_auto || 'file' === $lqg_mode;
 			</div>
 			<?php endif; ?>
 
-			<?php if ( $lqg_show_file ) : ?>
-			<div class="lqg-tab-panel lqg-tab-panel--file<?php echo ( $lqg_is_auto || 'file' !== $lqg_mode ) ? ' lqg-hidden' : ''; ?>"
+			<?php if ( $lumination_qg_show_file ) : ?>
+			<div class="lqg-tab-panel lqg-tab-panel--file<?php echo ( $lumination_qg_is_auto || 'file' !== $lqg_mode ) ? ' lqg-hidden' : ''; ?>"
 			     data-panel="file" role="tabpanel">
 				<div class="lqg-drop-zone" tabindex="0" role="button"
 				     aria-label="<?php esc_attr_e( 'Drop a PDF here or click to upload', 'lumination-quiz-generator' ); ?>">
