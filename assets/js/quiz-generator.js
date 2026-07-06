@@ -229,51 +229,40 @@
 		state.isProcessing = true;
 		els.submitBtn.disabled = true;
 		showPhase(els, 'loading');
-		setLoadingText(els, cfg.i18n.generating, 10);
+		setLoadingText(els, cfg.i18n.generating, 15);
 
-		// Step 1: Process content.
+		// Gather input.
 		var inputMode = state.activeTab;
 		var inputValue = '';
 		if (inputMode === 'url') inputValue = els.urlInput.value.trim();
 		else if (inputMode === 'text') inputValue = els.textInput.value.trim();
 		else if (inputMode === 'file') inputValue = state.fileData;
 
+		// Step 1: Submit the quiz job.
 		var fd = new FormData();
-		fd.append('action', 'lumination_quiz_process');
+		fd.append('action', 'lumination_quiz_create');
 		fd.append('nonce', cfg.nonce);
 		fd.append('input_mode', inputMode);
 		fd.append('input_value', inputValue);
+		fd.append('question_count', state.questionCount);
+		fd.append('difficulty', state.difficulty);
 		fd.append('page_url', window.location.href);
 
 		fetch(cfg.ajaxUrl, { method: 'POST', body: fd })
 			.then(function (r) { return r.json(); })
 			.then(function (resp) {
 				if (!resp.success) throw new Error(resp.data && resp.data.message ? resp.data.message : cfg.i18n.error);
+				state.quizUuid = resp.data.quiz_uuid;
 
 				setLoadingText(els, cfg.i18n.building, 30);
 
-				// Step 2: Create quiz.
-				var fd2 = new FormData();
-				fd2.append('action', 'lumination_quiz_create');
-				fd2.append('nonce', cfg.nonce);
-				fd2.append('document_uuid', resp.data.document_uuid);
-				fd2.append('question_count', state.questionCount);
-				fd2.append('difficulty', state.difficulty);
-
-				return fetch(cfg.ajaxUrl, { method: 'POST', body: fd2 });
-			})
-			.then(function (r) { return r.json(); })
-			.then(function (resp) {
-				if (!resp.success) throw new Error(resp.data && resp.data.message ? resp.data.message : cfg.i18n.error);
-				state.quizUuid = resp.data.quiz_uuid;
-
-				// Step 3: Poll status.
+				// Step 2: Poll status.
 				return pollQuizStatus(state, els);
 			})
 			.then(function () {
 				setLoadingText(els, cfg.i18n.almostDone, 90);
 
-				// Step 4: Fetch questions.
+				// Step 3: Fetch questions.
 				var fd3 = new FormData();
 				fd3.append('action', 'lumination_quiz_questions');
 				fd3.append('nonce', cfg.nonce);

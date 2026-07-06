@@ -4,7 +4,7 @@ Tags: quiz, ai, education, assessment, generator
 Requires at least: 6.4
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.0.1
+Stable tag: 1.1.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -59,6 +59,10 @@ PDF files up to 10 MB.
 In **Tools → Lumination → Usage Analytics** (provided by Lumination Core).
 
 == Changelog ==
+
+= 1.1.0 =
+* Migrate to the AI Tutor API v1 /quiz endpoint (requires Lumination Core 1.2.0+).
+* Quiz generation now runs as a single asynchronous job with browser-side polling.
 
 = 1.0.0 =
 * Initial release.
